@@ -30,14 +30,6 @@ export class TestService {
         })
     )
   }
-    headerOptions() {
-        return {
-            headers: new HttpHeaders({
-                // 'Content-Type': 'application/json'
-                // 'Content-Type': 'multipart/form-data'
-                // 'Content-Type': 'application/x-www-form-urlencoded'
-            })
-        };
-    }
+
 
 }
