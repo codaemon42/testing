@@ -1,0 +1,31 @@
+
+  <div class="container">
+    <div class="global-error" *ngIf="mailRes && (mailRes.status==='mail_failed' || mailRes.status === 'validation_failed')">{{mailRes.message}}</div>
+    <div class="global-success" *ngIf="mailRes && (mailRes.status !== 'mail_failed' && mailRes.status !== 'validation_failed')">{{mailRes.message}}</div>
+    <div class="title">{{ title }}</div>
+    <div class="form-wrapper">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <span class="error" *ngIf="(contactForm.controls['your-name'].touched || contactForm.controls['your-name'].dirty) && !contactForm.controls['your-name'].valid"> Name is required </span>
+      <input formControlName="your-name" placeholder="Name">
+      <br />
+      <br />
+      <span class="error" *ngIf="(contactForm.controls['your-email'].touched || contactForm.controls['your-email'].dirty) && !contactForm.controls['your-email'].valid"> Valid Email is required </span>
+      <input type="email" formControlName="your-email" placeholder="Email">
+      <br />
+      <br />
+      <span class="error" *ngIf="(contactForm.controls['your-subject'].touched || contactForm.controls['your-subject'].dirty) && !contactForm.controls['your-subject'].valid"> Subject is required max(25) words </span>
+      <input formControlName="your-subject" placeholder="Subject">
+      <br />
+      <br />
+      <span class="error" *ngIf="(contactForm.controls['your-message'].touched || contactForm.controls['your-message'].dirty) && !contactForm.controls['your-message'].valid"> Message is required </span>
+      <textarea formControlName="your-message" placeholder="Write your message..."></textarea>
+      <br />
+      <br />
+      <div class="button">
+        <button type="submit" [ngClass]="{'active-button': contactForm.valid, 'disable-button': !contactForm.valid}"> {{ submitText }} </button>
+      </div>
+    </form>
+
+    </div>
+  </div>
+
